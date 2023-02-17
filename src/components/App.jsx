@@ -1,17 +1,10 @@
-import { useState, useEffect } from 'react';
-import { getContacts } from 'redux/selectors';
-import { useSelector } from 'react-redux';
 import React from 'react';
 import { ContactsList } from './Contacts/ContactsList';
 import { FilterBar } from './Filter/Filter';
 import { Form } from './Form/Form';
 
 export const App = () => {
-  const contacts = useSelector(getContacts);
 
-  const [filter, setFilter] = useState('');
-
-  const handleChangeFilter = e => setFilter(e.currentTarget.value);
 
   // const formAddContact = data => {
   //   const dataContact = [
@@ -38,10 +31,6 @@ export const App = () => {
   //   setContacts(contacts.filter(contact => contact.id !== contactId));
   // };
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   return (
     <div className="Phonebook-container">
       <h1 className="Phonebook__title">Phonebook</h1>
@@ -49,9 +38,9 @@ export const App = () => {
       {/* <Form onSubmit={formAddContact} /> */}
       <Form />
 
-      <FilterBar handleChange={handleChangeFilter} />
+      <FilterBar  />
 
-      <ContactsList contacts={filteredContacts} />
+      <ContactsList />
       {/* <ContactsList
         contacts={filteredContacts}
         onDeleteContact={deleteContact}

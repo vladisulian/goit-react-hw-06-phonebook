@@ -1,6 +1,15 @@
 import PropTypes from 'prop-types';
 import './Filter.css';
-export const FilterBar = ({ handleChange }) => {
+//? redux
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/actions';
+
+export const FilterBar = () => {
+  const dispatch = useDispatch();
+  const handleChangeFilter = e => {
+    dispatch(setFilter(e.target.value));
+  };
+
   return (
     <>
       <h3>Find your contacts by name</h3>
@@ -9,7 +18,7 @@ export const FilterBar = ({ handleChange }) => {
           type="text"
           name="filter"
           className="filter__input"
-          onChange={handleChange}
+          onChange={handleChangeFilter}
         />
       </div>
     </>
