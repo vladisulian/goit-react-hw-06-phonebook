@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 import { devToolsEnhancer } from '@redux-devtools/extension';
 import { nanoid } from 'nanoid';
+import { rootReducer } from './reducer';
 
 const initialState = {
   contacts: [
@@ -13,8 +14,6 @@ const initialState = {
 };
 // Пока что используем редюсер который
 // только возвращает полученное состояние
-const rootReducer = (state = initialState, action) => {
-  return state;
-};
+
 const enhancer = devToolsEnhancer();
 export const store = createStore(rootReducer, enhancer);
