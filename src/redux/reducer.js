@@ -1,5 +1,4 @@
 import { nanoid } from 'nanoid';
-import { combineReducers } from 'redux';
 
 const contactsinitialState = [
   { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
@@ -8,7 +7,9 @@ const contactsinitialState = [
   { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-const contactsReducer = (state = contactsinitialState, action) => {
+
+
+export const contactsReducer = (state = contactsinitialState, action) => {
   switch (action.type) {
     case 'contacts/addContact':
       return [...state, action.payload];
@@ -27,7 +28,7 @@ const contactsReducer = (state = contactsinitialState, action) => {
 };
 const filterInitialState = '';
 
-const filterReducer = (state = filterInitialState, action) => {
+export const filterReducer = (state = filterInitialState, action) => {
   switch (action.type) {
     case 'filter/setFilter':
       return action.payload;
@@ -37,7 +38,4 @@ const filterReducer = (state = filterInitialState, action) => {
   }
 };
 
-export const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer,
-});
+
