@@ -1,7 +1,5 @@
 import { nanoid } from 'nanoid';
-import { createReducer, createSlice } from '@reduxjs/toolkit';
-// import { addContact, deleteContact, setFilter } from './actions';
-import { ContactsList } from 'components/Contacts/ContactsList';
+import { createSlice } from '@reduxjs/toolkit';
 
 const contactsinitialState = [
   { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
@@ -34,11 +32,6 @@ const contactsSlise = createSlice({
     },
   },
 });
-
-// const filterInitialState = '';
-// export const filterReducer = createReducer(filterInitialState, {
-//   [setFilter]: (state, action) => (state = action.payload),
-// });
 
 export const { addContact, deleteContact } = contactsSlise.actions;
 export const contactsReducer = contactsSlise.reducer;
