@@ -29,7 +29,7 @@ const contactsSlise = createSlice({
       },
     },
     deleteContact(state, action) {
-      const index = state.findIndex(contact => contact.id !== action.payload);
+      const index = state.findIndex(contact => contact.id === action.payload);
       state.splice(index, 1);
     },
   },
