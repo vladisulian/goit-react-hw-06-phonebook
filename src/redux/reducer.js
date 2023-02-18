@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { createReducer } from '@reduxjs/toolkit';
 import { addContact, deleteContact, setFilter } from './actions';
 
 const contactsinitialState = [
@@ -8,26 +9,38 @@ const contactsinitialState = [
   { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-export const contactsReducer = (state = contactsinitialState, action) => {
-  switch (action.type) {
-    case addContact.type:
-      return [...state, action.payload];
+export const contactsReducer = createReducer(contactsinitialState, {
+  [addContact]: (state, action) => {
+    return [...state, action.payload];
+  },
+  [deleteContact]: (state, action) => {
+    return state.filter(contact => contact.id !== action.payload);
+  },
+});
 
-    case deleteContact.type:
-      return state.filter(contact => contact.id !== action.payload);
-
-    default:
-      return state;
-  }
-};
 const filterInitialState = '';
+export const filterReducer = createReducer(filterInitialState, {
+  [setFilter]: (state, action) => action.payload,
+});
+// export const contactsReducer = (state = contactsinitialState, action) => {
+//   switch (action.type) {
+//     case addContact.type:
+//       return [...state, action.payload];
 
-export const filterReducer = (state = filterInitialState, action) => {
-  switch (action.type) {
-    case setFilter.type:
-      return action.payload;
+//     case deleteContact.type:
+//       return state.filter(contact => contact.id !== action.payload);
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
+
+// export const filterReducer = (state = filterInitialState, action) => {
+//   switch (action.type) {
+//     case setFilter.type:
+//       return action.payload;
+
+//     default:
+//       return state;
+//   }
+// };
