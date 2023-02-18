@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { addContact, deleteContact, setFilter } from './actions';
 
 const contactsinitialState = [
   { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
@@ -7,21 +8,14 @@ const contactsinitialState = [
   { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-
-
 export const contactsReducer = (state = contactsinitialState, action) => {
   switch (action.type) {
-    case 'contacts/addContact':
+    case addContact.type:
       return [...state, action.payload];
 
-    case 'contacts/deleteContact':
+    case deleteContact.type:
       return state.filter(contact => contact.id !== action.payload);
 
-    // case 'filter/setFilter':
-    //   return {
-    //     ...state.filter,
-    //     filter: action.payload,
-    //   };
     default:
       return state;
   }
@@ -30,12 +24,10 @@ const filterInitialState = '';
 
 export const filterReducer = (state = filterInitialState, action) => {
   switch (action.type) {
-    case 'filter/setFilter':
+    case setFilter.type:
       return action.payload;
 
     default:
       return state;
   }
 };
-
-
